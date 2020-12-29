@@ -2,9 +2,12 @@
 
 #Android10 Only
 
-JUST GO TO MASTER
+JUST GO TO THE MASTER
+JUST GO TO THE MASTER
+JUST GO TO THE MASTER
+https://github.com/nacizzz/MIUIMod_Build_Tool/tree/master
 
-https://github.com/nacizzz/MIUIMod_Build_Tool/edit/master
+-------------------------------------- ------------------
 
 How to use: Need:Debian buster
 
