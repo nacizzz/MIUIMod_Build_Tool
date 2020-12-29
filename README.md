@@ -2,6 +2,10 @@
 
 #Android10 Only
 
+JUST GO TO MASTER
+
+https://github.com/nacizzz/MIUIMod_Build_Tool/edit/master
+
 How to use: Need:Debian buster
 
 git zip unzip default-jdk brotli python3 sudo cpio p7zip-full aapt zipalign
