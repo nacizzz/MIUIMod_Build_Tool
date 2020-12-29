@@ -2,13 +2,7 @@ getprop("ro.product.device") == "grus" || abort("E3004: This package is for \"gr
 
 # ---- radio update tasks ----
 
-ui_print("--------------------------------");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("----　　HaisTeam@MIUI_LITE　　  ");
-ui_print("----　　　　　　　　　　　   	 ");
-ui_print("----　　　　　　by  nacizzz　      ");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("--------------------------------");
+ui_print("by  nacizzz");
 show_progress(0.200000, 10);
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
 package_extract_file("firmware-update/BTFM.bin", "/dev/block/bootdevice/by-name/bluetooth");
@@ -45,29 +39,14 @@ package_extract_file("firmware-update/xbl_config.elf", "/dev/block/bootdevice/by
 package_extract_file("firmware-update/xbl_config.elf", "/dev/block/bootdevice/by-name/xbl_configbak");
 show_progress(0.700000, 250);
 
-ui_print("--------------------------------");
-ui_print("----　　　　刷入System　　      ");
-ui_print("----　　　　          　　      ");
-ui_print("----　首次开机,10分钟,请耐心　　");
-ui_print("----　　　　          　　      ");
-ui_print("--------------------------------");
 ui_print("Patching system image unconditionally...");
 block_image_update("/dev/block/bootdevice/by-name/system", package_extract_file("system.transfer.list"), "system.new.dat.br", "system.patch.dat") || abort("E1001: Failed to update system image.");
   
 
-ui_print("--------------------------------");
-ui_print("----　　　刷入Vendor　　　      ");
-ui_print("----　　　　          　　      ");
-ui_print("----　首次开机,10分钟,请耐心　　");
-ui_print("----　　　　          　　      ");
-ui_print("--------------------------------");
 ui_print("Patching vendor image unconditionally...");
 block_image_update("/dev/block/bootdevice/by-name/vendor", package_extract_file("vendor.transfer.list"), "vendor.new.dat.br", "vendor.patch.dat") || abort("E2001: Failed to update vendor image.");
 
 
-ui_print("--------------------------------");
-ui_print("----　　　刷入Magisk　　　      ");
-ui_print("--------------------------------");
 ui_print("Patching magisk binimages...");
 run_program("/sbin/mkdir", "/tmp/Hais/Magisk", "-p");
 package_extract_file("META-INF/pw/hais/rom/Magisk.zip", "/tmp/Hais/Magisk.zip");
@@ -79,9 +58,7 @@ run_program("/sbin/cp", "/tmp/Hais/Magisk/common/magisk.apk","/system/app/Magisk
 run_program("/sbin/chmod","644","/system/app/Magisk/Magisk.apk");
 
 
-ui_print("--------------------------------");
-ui_print("----　　   删除临时文件  　　   ");
-ui_print("--------------------------------");
+ui_print("删除临时文件");
 ui_print("Clean cust tmp dalvik-cache package_cache ...");
 ifelse(is_mounted("/system_root"), unmount("/system_root"));
 ifelse(is_mounted("/system"), unmount("/system"));
@@ -98,33 +75,9 @@ run_program("/sbin/busybox", "mount", "/persist");
 run_program("/sbin/busybox", "rm", "-rf", "/cust");
 run_program("/sbin/busybox", "rm", "-rf", "/data/cust");
 
-ui_print("--------------------------------");
-ui_print("----　　 正在执行Hais脚本  　   ");
-ui_print("----　　　　          　　      ");
-ui_print("----　首次开机,10分钟,请耐心　　");
-ui_print("----　　　　          　　      ");
-ui_print("--------------------------------");
-run_program("/sbin/mkdir", "/tmp/Hais/ReplaceFile", "-p");
-package_extract_file("META-INF/pw/hais/rom/ReplaceFile.dat", "/tmp/Hais/ReplaceFile.dat");
-run_program("/sbin/unzip", "/tmp/Hais/ReplaceFile.dat", "-d", "/tmp/Hais/ReplaceFile");
-package_extract_file("META-INF/pw/hais/rom/hais_diy_rom.so", "/tmp/Hais/ReplaceFile/hais_diy_rom.so");
-run_program("/sbin/chmod","0777","/tmp/Hais/ReplaceFile/hais_diy_rom.so");
-run_program("/sbin/busybox", "sh", "/tmp/Hais/ReplaceFile/hais_diy_rom.so", "dummy", "1", "/tmp/Hais/ReplaceFile/hais_diy_rom.so");
-run_program("/sbin/busybox", "rm", "-rf", "/tmp/Hais");
+ui_print("首次开机时执行dex2oat编译，时间较长请耐心等待");
 show_progress(0.0800000, 250);
 
 
-ui_print("--------------------------------");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("----　　HaisTeam@MIUI_LITE　　  ");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("----　　　　　　by  nacizzz　      ");
-ui_print("--------------------------------");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("----　　 刷机结束，耐心等待　　 ");
-ui_print("----　　 首次开机，约10分钟　　 ");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("----　　　　　　　　　　　      ");
-ui_print("--------------------------------");
 
 set_progress(1.000000);
